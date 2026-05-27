@@ -218,7 +218,7 @@
 
       /* ===== SECTION BASE ===== */
       section {
-        padding: 7rem 2rem;
+        padding: clamp(4rem, 8vw, 5.5rem) 2rem;
         max-width: 1100px;
         margin: 0 auto;
       }
@@ -255,7 +255,7 @@
         color: var(--text-muted);
         font-size: 0.975rem;
         max-width: 520px;
-        margin-bottom: 3.5rem;
+        margin-bottom: 2.5rem;
       }
 
       /* ===== HERO ===== */
@@ -870,6 +870,45 @@
         margin-top: 0.5rem;
       }
 
+      .cert-card.upcoming {
+        border-style: dashed;
+        cursor: default;
+        opacity: 0.6;
+      }
+      .cert-card.upcoming:hover {
+        transform: none;
+        border-color: var(--border);
+        opacity: 0.75;
+      }
+      .cert-upcoming-thumb {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 6px,
+          rgba(91, 141, 238, 0.04) 6px,
+          rgba(91, 141, 238, 0.04) 12px
+        );
+        border-bottom: 1px dashed var(--border);
+      }
+      .cert-upcoming-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 1.5px dashed var(--border-hi);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-dim);
+        font-size: 1.3rem;
+        font-weight: 300;
+        line-height: 1;
+      }
+
       /* ===== CERT LIGHTBOX ===== */
       .cert-modal {
         position: fixed;
@@ -1061,6 +1100,26 @@
         transform: none;
         transition-delay: 0.34s;
       }
+      .stagger.visible > *:nth-child(7) {
+        opacity: 1;
+        transform: none;
+        transition-delay: 0.4s;
+      }
+      .stagger.visible > *:nth-child(8) {
+        opacity: 1;
+        transform: none;
+        transition-delay: 0.46s;
+      }
+      .stagger.visible > *:nth-child(9) {
+        opacity: 1;
+        transform: none;
+        transition-delay: 0.52s;
+      }
+      .stagger.visible > *:nth-child(9) {
+        opacity: 1;
+        transform: none;
+        transition-delay: 0.52s;
+      }
 
       /* ===== RESPONSIVE ===== */
       @media (max-width: 800px) {
@@ -1143,8 +1202,9 @@
         </h1>
 
         <p class="hero-desc">
-          Aspiring IT professional building real-world solutions — from web apps
-          and government systems to interactive games and beyond.
+          Aspiring IT leader with broad technical knowledge and the soft skills
+          to match — bridging people, process, and technology to deliver
+          solutions that actually work.
         </p>
 
         <div class="hero-cta">
@@ -1193,20 +1253,25 @@
         </div>
         <div class="about-text">
           <p>
-            Hi! I'm Carlo, a third-year Bachelor of Science in Information
-            Technology student with a passion for building digital solutions
-            that are functional, clean, and user-centered.
+            Hi, I'm Carlo — a third-year BS Information Technology student who
+            combines hands-on technical work with a leader's perspective. I
+            build things, and I think about the full picture behind them: the
+            people, the process, and the problem being solved.
           </p>
           <p>
-            Throughout college I've tackled diverse projects — a coffee shop
-            website, a government survey system, interactive games, and my
-            ongoing capstone. Each one pushed me to grow as a developer and
-            problem-solver.
+            My experience spans web development, databases, mobile apps,
+            networking, and data analytics — and I've built and shipped projects
+            across all of these areas. That breadth is intentional. Being fluent
+            across disciplines makes me a faster learner, a stronger
+            communicator, and someone who can contribute meaningfully in any
+            role on a team.
           </p>
           <p>
-            Outside of coursework, I'm continuously learning through online
-            certifications in networking and web technologies, always leveling
-            up one course at a time.
+            From leading my capstone project to delivering real-world systems,
+            I've taken full ownership — from planning and coordination down to
+            writing and shipping the actual product. I believe the most valuable
+            skill in IT is the ability to learn fast, adapt to any stack, and
+            lead with clarity.
           </p>
           <div class="about-stats">
             <div class="stat">
@@ -1218,7 +1283,7 @@
               <span class="stat-lbl">Year</span>
             </div>
             <div class="stat">
-              <span class="stat-num">2+</span>
+              <span class="stat-num">7+</span>
               <span class="stat-lbl">Certs</span>
             </div>
           </div>
@@ -1742,10 +1807,13 @@
         Online courses and certifications I've earned — and am still adding to.
       </p>
       <div class="certs-grid stagger">
-
         <div class="cert-card" data-cert="images/certificate-1.jpg">
           <div class="cert-thumb">
-            <img src="images/certificate-1.jpg" alt="Getting Started with Generative AI" loading="lazy" />
+            <img
+              src="images/certificate-1.jpg"
+              alt="Getting Started with Generative AI"
+              loading="lazy"
+            />
           </div>
           <div class="cert-info">
             <div class="cert-name">Getting Started with Generative AI</div>
@@ -1756,7 +1824,11 @@
 
         <div class="cert-card" data-cert="images/certificate-2.jpg">
           <div class="cert-thumb">
-            <img src="images/certificate-2.jpg" alt="Cybersecurity Fundamentals" loading="lazy" />
+            <img
+              src="images/certificate-2.jpg"
+              alt="Cybersecurity Fundamentals"
+              loading="lazy"
+            />
           </div>
           <div class="cert-info">
             <div class="cert-name">Cybersecurity Fundamentals</div>
@@ -1767,7 +1839,11 @@
 
         <div class="cert-card" data-cert="images/certificate-3.jpg">
           <div class="cert-thumb">
-            <img src="images/certificate-3.jpg" alt="Google Analytics for Beginners" loading="lazy" />
+            <img
+              src="images/certificate-3.jpg"
+              alt="Google Analytics for Beginners"
+              loading="lazy"
+            />
           </div>
           <div class="cert-info">
             <div class="cert-name">Google Analytics for Beginners</div>
@@ -1778,10 +1854,16 @@
 
         <div class="cert-card" data-cert="images/certificate-4.jpg">
           <div class="cert-thumb">
-            <img src="images/certificate-4.jpg" alt="Networking Devices and Basic Configuration" loading="lazy" />
+            <img
+              src="images/certificate-4.jpg"
+              alt="Networking Devices and Basic Configuration"
+              loading="lazy"
+            />
           </div>
           <div class="cert-info">
-            <div class="cert-name">Networking Devices and Basic Configuration</div>
+            <div class="cert-name">
+              Networking Devices and Basic Configuration
+            </div>
             <div class="cert-issuer">Cisco Networking Academy</div>
             <div class="cert-year">2025</div>
           </div>
@@ -1789,7 +1871,11 @@
 
         <div class="cert-card" data-cert="images/certificate-5.jpg">
           <div class="cert-thumb">
-            <img src="images/certificate-5.jpg" alt="Networking Basics" loading="lazy" />
+            <img
+              src="images/certificate-5.jpg"
+              alt="Networking Basics"
+              loading="lazy"
+            />
           </div>
           <div class="cert-info">
             <div class="cert-name">Networking Basics</div>
@@ -1800,7 +1886,11 @@
 
         <div class="cert-card" data-cert="images/certificate-6.jpg">
           <div class="cert-thumb">
-            <img src="images/certificate-6.jpg" alt="Network Support and Security" loading="lazy" />
+            <img
+              src="images/certificate-6.jpg"
+              alt="Network Support and Security"
+              loading="lazy"
+            />
           </div>
           <div class="cert-info">
             <div class="cert-name">Network Support and Security</div>
@@ -1811,15 +1901,32 @@
 
         <div class="cert-card" data-cert="images/certificate-7.jpg">
           <div class="cert-thumb">
-            <img src="images/certificate-7.jpg" alt="Network Addressing and Basic Troubleshooting" loading="lazy" />
+            <img
+              src="images/certificate-7.jpg"
+              alt="Network Addressing and Basic Troubleshooting"
+              loading="lazy"
+            />
           </div>
           <div class="cert-info">
-            <div class="cert-name">Network Addressing and Basic Troubleshooting</div>
+            <div class="cert-name">
+              Network Addressing and Basic Troubleshooting
+            </div>
             <div class="cert-issuer">Cisco Networking Academy</div>
             <div class="cert-year">2025</div>
           </div>
         </div>
-
+        <div class="cert-card upcoming">
+          <div class="cert-upcoming-thumb">
+            <div class="cert-upcoming-icon">+</div>
+          </div>
+          <div class="cert-info">
+            <div class="cert-name">More Credentials on the Way</div>
+            <div class="cert-issuer">
+              Continuously expanding — always learning
+            </div>
+            <div class="cert-year">2026 →</div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1839,7 +1946,7 @@
           Don't hesitate to reach out.
         </p>
         <div class="contact-links">
-          <a href="mailto:your@email.com" class="contact-link">
+          <a href="mailto:0509cd@gmail.com" class="contact-link">
             <svg
               fill="none"
               stroke="currentColor"
@@ -1854,7 +1961,7 @@
             Email Me
           </a>
           <a
-            href="https://github.com/yourusername"
+            href="https://github.com/ceedee9"
             target="_blank"
             rel="noopener"
             class="contact-link"
@@ -1867,7 +1974,7 @@
             GitHub
           </a>
           <a
-            href="https://linkedin.com/in/yourusername"
+            href="https://www.linkedin.com/in/carlo-de-los-reyes-b4b764400/"
             target="_blank"
             rel="noopener"
             class="contact-link"
