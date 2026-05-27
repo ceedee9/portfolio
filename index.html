@@ -803,7 +803,7 @@
       /* ===== CERTIFICATES ===== */
       .certs-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
         gap: 1.1rem;
       }
 
@@ -811,53 +811,115 @@
         background: var(--card);
         border: 1px solid var(--border);
         border-radius: var(--r);
-        padding: 1.4rem;
+        overflow: hidden;
         display: flex;
-        gap: 1rem;
-        align-items: flex-start;
+        flex-direction: column;
+        cursor: pointer;
         transition:
           border-color 0.2s,
           transform 0.2s;
       }
       .cert-card:hover {
         border-color: var(--border-hi);
-        transform: translateY(-2px);
-      }
-      .cert-card.soon {
-        opacity: 0.38;
-        border-style: dashed;
+        transform: translateY(-3px);
       }
 
-      .cert-icon {
-        width: 42px;
-        height: 42px;
-        background: var(--blue-dim);
-        border: 1px solid rgba(91, 141, 238, 0.18);
-        border-radius: 10px;
+      .cert-thumb {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        background: #e8e8e8;
+      }
+      .cert-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+        display: block;
+        transition: transform 0.35s ease;
+      }
+      .cert-card:hover .cert-thumb img {
+        transform: scale(1.04);
+      }
+
+      .cert-info {
+        padding: 1rem 1.2rem 1.2rem;
+        flex: 1;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
-        flex-shrink: 0;
+        flex-direction: column;
+        gap: 0.2rem;
       }
 
       .cert-name {
         font-family: "Syne", sans-serif;
-        font-size: 0.9rem;
+        font-size: 0.88rem;
         font-weight: 600;
         letter-spacing: -0.01em;
-        margin-bottom: 0.2rem;
+        line-height: 1.35;
       }
       .cert-issuer {
-        font-size: 0.78rem;
+        font-size: 0.75rem;
         color: var(--text-muted);
-        margin-bottom: 0.45rem;
+        margin-top: 0.15rem;
       }
       .cert-year {
         font-family: "JetBrains Mono", monospace;
-        font-size: 0.67rem;
+        font-size: 0.65rem;
         color: var(--blue);
         letter-spacing: 0.08em;
+        margin-top: 0.5rem;
+      }
+
+      /* ===== CERT LIGHTBOX ===== */
+      .cert-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s;
+      }
+      .cert-modal.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+      .cert-modal-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.82);
+      }
+      .cert-modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        color: #fff;
+        font-size: 1.4rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1002;
+        transition: background 0.15s;
+      }
+      .cert-modal-close:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+      .cert-modal-img {
+        max-width: 90vw;
+        max-height: 85vh;
+        border-radius: 8px;
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
+        position: relative;
+        z-index: 1001;
+        object-fit: contain;
       }
 
       /* ===== CONTACT ===== */
@@ -1680,36 +1742,93 @@
         Online courses and certifications I've earned — and am still adding to.
       </p>
       <div class="certs-grid stagger">
-        <div class="cert-card">
-          <div class="cert-icon">🌐</div>
-          <div>
-            <div class="cert-name">Introduction to Networks</div>
-            <div class="cert-issuer">Cisco Networking Academy</div>
-            <div class="cert-year">2024</div>
+
+        <div class="cert-card" data-cert="images/certificate-1.jpg">
+          <div class="cert-thumb">
+            <img src="images/certificate-1.jpg" alt="Getting Started with Generative AI" loading="lazy" />
+          </div>
+          <div class="cert-info">
+            <div class="cert-name">Getting Started with Generative AI</div>
+            <div class="cert-issuer">IBM SkillsBuild</div>
+            <div class="cert-year">2026</div>
           </div>
         </div>
 
-        <div class="cert-card">
-          <div class="cert-icon">📡</div>
-          <div>
-            <div class="cert-name">
-              Switching, Routing & Wireless Essentials
-            </div>
-            <div class="cert-issuer">Cisco Networking Academy</div>
-            <div class="cert-year">2024</div>
+        <div class="cert-card" data-cert="images/certificate-2.jpg">
+          <div class="cert-thumb">
+            <img src="images/certificate-2.jpg" alt="Cybersecurity Fundamentals" loading="lazy" />
+          </div>
+          <div class="cert-info">
+            <div class="cert-name">Cybersecurity Fundamentals</div>
+            <div class="cert-issuer">IBM SkillsBuild</div>
+            <div class="cert-year">2026</div>
           </div>
         </div>
 
-        <div class="cert-card soon">
-          <div class="cert-icon">✦</div>
-          <div>
-            <div class="cert-name">More on the way</div>
-            <div class="cert-issuer">Continuously learning</div>
-            <div class="cert-year">2025 →</div>
+        <div class="cert-card" data-cert="images/certificate-3.jpg">
+          <div class="cert-thumb">
+            <img src="images/certificate-3.jpg" alt="Google Analytics for Beginners" loading="lazy" />
+          </div>
+          <div class="cert-info">
+            <div class="cert-name">Google Analytics for Beginners</div>
+            <div class="cert-issuer">Google Analytics Academy</div>
+            <div class="cert-year">2026</div>
           </div>
         </div>
+
+        <div class="cert-card" data-cert="images/certificate-4.jpg">
+          <div class="cert-thumb">
+            <img src="images/certificate-4.jpg" alt="Networking Devices and Basic Configuration" loading="lazy" />
+          </div>
+          <div class="cert-info">
+            <div class="cert-name">Networking Devices and Basic Configuration</div>
+            <div class="cert-issuer">Cisco Networking Academy</div>
+            <div class="cert-year">2025</div>
+          </div>
+        </div>
+
+        <div class="cert-card" data-cert="images/certificate-5.jpg">
+          <div class="cert-thumb">
+            <img src="images/certificate-5.jpg" alt="Networking Basics" loading="lazy" />
+          </div>
+          <div class="cert-info">
+            <div class="cert-name">Networking Basics</div>
+            <div class="cert-issuer">Cisco Networking Academy</div>
+            <div class="cert-year">2025</div>
+          </div>
+        </div>
+
+        <div class="cert-card" data-cert="images/certificate-6.jpg">
+          <div class="cert-thumb">
+            <img src="images/certificate-6.jpg" alt="Network Support and Security" loading="lazy" />
+          </div>
+          <div class="cert-info">
+            <div class="cert-name">Network Support and Security</div>
+            <div class="cert-issuer">Cisco Networking Academy</div>
+            <div class="cert-year">2025</div>
+          </div>
+        </div>
+
+        <div class="cert-card" data-cert="images/certificate-7.jpg">
+          <div class="cert-thumb">
+            <img src="images/certificate-7.jpg" alt="Network Addressing and Basic Troubleshooting" loading="lazy" />
+          </div>
+          <div class="cert-info">
+            <div class="cert-name">Network Addressing and Basic Troubleshooting</div>
+            <div class="cert-issuer">Cisco Networking Academy</div>
+            <div class="cert-year">2025</div>
+          </div>
+        </div>
+
       </div>
     </section>
+
+    <!-- ===== CERT LIGHTBOX ===== -->
+    <div class="cert-modal" id="certModal" aria-hidden="true">
+      <div class="cert-modal-backdrop"></div>
+      <button class="cert-modal-close" aria-label="Close">&times;</button>
+      <img class="cert-modal-img" src="" alt="Certificate" />
+    </div>
 
     <!-- ===== CONTACT ===== -->
     <section id="contact">
@@ -1926,6 +2045,33 @@
             img.addEventListener("error", onSettle);
           }
         });
+      });
+
+      // ===== CERTIFICATE LIGHTBOX =====
+      const certModal = document.getElementById("certModal");
+      const certModalImg = certModal.querySelector(".cert-modal-img");
+      const certModalClose = certModal.querySelector(".cert-modal-close");
+      const certModalBackdrop = certModal.querySelector(".cert-modal-backdrop");
+
+      document.querySelectorAll(".cert-card[data-cert]").forEach((card) => {
+        card.addEventListener("click", () => {
+          certModalImg.src = card.dataset.cert;
+          certModal.classList.add("open");
+          certModal.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+        });
+      });
+
+      function closeCertModal() {
+        certModal.classList.remove("open");
+        certModal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      certModalClose.addEventListener("click", closeCertModal);
+      certModalBackdrop.addEventListener("click", closeCertModal);
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeCertModal();
       });
     </script>
   </body>
