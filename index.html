@@ -639,6 +639,7 @@
         font-family: "JetBrains Mono", monospace;
         letter-spacing: 0.08em;
         text-transform: uppercase;
+        z-index: 5;
       }
 
       .proj-body {
@@ -676,18 +677,92 @@
         border: 1px solid var(--border);
       }
 
-      .proj-screenshot {
+      .proj-slider {
         position: absolute;
         inset: 0;
+        z-index: 2;
+        overflow: hidden;
+      }
+      .proj-slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+      }
+      .proj-slide.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .proj-slide.broken {
+        display: none;
+      }
+      .proj-slide img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         object-position: top;
-        z-index: 1;
-        transition: transform 0.4s ease;
+        display: block;
       }
-      .project-card:hover .proj-screenshot {
-        transform: scale(1.04);
+      .slide-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 4;
+        background: rgba(7, 7, 14, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.88);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        transition:
+          opacity 0.2s,
+          background 0.2s;
+        font-size: 1.1rem;
+        padding: 0;
+        line-height: 1;
+      }
+      .project-card:hover .slide-btn {
+        opacity: 1;
+      }
+      .slide-btn:hover {
+        background: rgba(91, 141, 238, 0.6);
+      }
+      .slide-prev {
+        left: 0.65rem;
+      }
+      .slide-next {
+        right: 0.65rem;
+      }
+      .slide-dots {
+        position: absolute;
+        bottom: 0.65rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 5px;
+        z-index: 4;
+      }
+      .slide-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+      .slide-dot.active {
+        background: #fff;
+        transform: scale(1.4);
       }
 
       .proj-links {
@@ -1165,13 +1240,40 @@
               "
             ></div>
             <span class="proj-icon">☕</span>
-            <!-- Replace src with your screenshot path e.g. images/coffee-shop.png -->
-            <img
-              class="proj-screenshot"
-              src=""
-              alt="Coffee Shop Website screenshot"
-              onerror="this.style.display = 'none'"
-            />
+            <div class="proj-slider">
+              <div class="proj-slide active">
+                <img
+                  src="images/coffee-1.png"
+                  alt="Coffee Shop - 1"
+                  onerror="this.closest('.proj-slide').classList.add('broken')"
+                />
+              </div>
+              <div class="proj-slide">
+                <img
+                  src="images/coffee-2.png"
+                  alt="Coffee Shop - 2"
+                  onerror="this.closest('.proj-slide').classList.add('broken')"
+                />
+              </div>
+              <div class="proj-slide">
+                <img
+                  src="images/coffee-3.png"
+                  alt="Coffee Shop - 3"
+                  onerror="this.closest('.proj-slide').classList.add('broken')"
+                />
+              </div>
+            </div>
+            <button class="slide-btn slide-prev" aria-label="Previous">
+              &#8249;
+            </button>
+            <button class="slide-btn slide-next" aria-label="Next">
+              &#8250;
+            </button>
+            <div class="slide-dots">
+              <button class="slide-dot active" aria-label="Slide 1"></button>
+              <button class="slide-dot" aria-label="Slide 2"></button>
+              <button class="slide-dot" aria-label="Slide 3"></button>
+            </div>
           </div>
           <div class="proj-body">
             <h3 class="proj-title">Coffee Shop Website</h3>
@@ -1233,13 +1335,40 @@
               "
             ></div>
             <span class="proj-icon">🏛️</span>
-            <!-- Replace src with your screenshot path e.g. images/arta-survey.png -->
-            <img
-              class="proj-screenshot"
-              src=""
-              alt="ARTA Government Survey screenshot"
-              onerror="this.style.display = 'none'"
-            />
+            <div class="proj-slider">
+              <div class="proj-slide active">
+                <img
+                  src="images/arta-1.png"
+                  alt="ARTA Survey - 1"
+                  onerror="this.closest('.proj-slide').classList.add('broken')"
+                />
+              </div>
+              <div class="proj-slide">
+                <img
+                  src="images/arta-2.png"
+                  alt="ARTA Survey - 2"
+                  onerror="this.closest('.proj-slide').classList.add('broken')"
+                />
+              </div>
+              <div class="proj-slide">
+                <img
+                  src="images/arta-3.png"
+                  alt="ARTA Survey - 3"
+                  onerror="this.closest('.proj-slide').classList.add('broken')"
+                />
+              </div>
+            </div>
+            <button class="slide-btn slide-prev" aria-label="Previous">
+              &#8249;
+            </button>
+            <button class="slide-btn slide-next" aria-label="Next">
+              &#8250;
+            </button>
+            <div class="slide-dots">
+              <button class="slide-dot active" aria-label="Slide 1"></button>
+              <button class="slide-dot" aria-label="Slide 2"></button>
+              <button class="slide-dot" aria-label="Slide 3"></button>
+            </div>
           </div>
           <div class="proj-body">
             <h3 class="proj-title">ARTA Government Survey</h3>
@@ -1303,13 +1432,32 @@
             ></div>
             <span class="proj-icon">📱</span>
             <div class="proj-badge">Beta</div>
-            <!-- Replace src with your screenshot path e.g. images/idetect.png -->
-            <img
-              class="proj-screenshot"
-              src=""
-              alt="iDETECT screenshot"
-              onerror="this.style.display = 'none'"
-            />
+            <div class="proj-slider">
+              <div class="proj-slide active">
+                <img
+                  src="images/idetect-1.png"
+                  alt="iDETECT - 1"
+                  onerror="this.closest('.proj-slide').classList.add('broken')"
+                />
+              </div>
+              <div class="proj-slide">
+                <img
+                  src="images/idetect-2.png"
+                  alt="iDETECT - 2"
+                  onerror="this.closest('.proj-slide').classList.add('broken')"
+                />
+              </div>
+            </div>
+            <button class="slide-btn slide-prev" aria-label="Previous">
+              &#8249;
+            </button>
+            <button class="slide-btn slide-next" aria-label="Next">
+              &#8250;
+            </button>
+            <div class="slide-dots">
+              <button class="slide-dot active" aria-label="Slide 1"></button>
+              <button class="slide-dot" aria-label="Slide 2"></button>
+            </div>
           </div>
           <div class="proj-body">
             <h3 class="proj-title">iDETECT</h3>
@@ -1385,13 +1533,40 @@
               "
             ></div>
             <span class="proj-icon">🎮</span>
-            <!-- Replace src with your screenshot path e.g. images/game1.png -->
-            <img
-              class="proj-screenshot"
-              src=""
-              alt="Game Project 1 screenshot"
-              onerror="this.style.display = 'none'"
-            />
+            <div class="proj-slider">
+              <div class="proj-slide active">
+                <img
+                  src="images/game1-1.jpg"
+                  alt="Game 1 - 1"
+                  onerror="this.closest('.proj-slide').classList.add('broken')"
+                />
+              </div>
+              <div class="proj-slide">
+                <img
+                  src="images/game1-2.jpg"
+                  alt="Game 1 - 2"
+                  onerror="this.closest('.proj-slide').classList.add('broken')"
+                />
+              </div>
+              <div class="proj-slide">
+                <img
+                  src="images/game1-3.jpg"
+                  alt="Game 1 - 3"
+                  onerror="this.closest('.proj-slide').classList.add('broken')"
+                />
+              </div>
+            </div>
+            <button class="slide-btn slide-prev" aria-label="Previous">
+              &#8249;
+            </button>
+            <button class="slide-btn slide-next" aria-label="Next">
+              &#8250;
+            </button>
+            <div class="slide-dots">
+              <button class="slide-dot active" aria-label="Slide 1"></button>
+              <button class="slide-dot" aria-label="Slide 2"></button>
+              <button class="slide-dot" aria-label="Slide 3"></button>
+            </div>
           </div>
           <div class="proj-body">
             <h3 class="proj-title">Game Project #1</h3>
@@ -1436,13 +1611,40 @@
               "
             ></div>
             <span class="proj-icon">🕹️</span>
-            <!-- Replace src with your screenshot path e.g. images/game2.png -->
-            <img
-              class="proj-screenshot"
-              src=""
-              alt="Game Project 2 screenshot"
-              onerror="this.style.display = 'none'"
-            />
+            <div class="proj-slider">
+              <div class="proj-slide active">
+                <img
+                  src="images/game2-1.jpg"
+                  alt="Game 2 - 1"
+                  onerror="this.closest('.proj-slide').classList.add('broken')"
+                />
+              </div>
+              <div class="proj-slide">
+                <img
+                  src="images/game2-2.jpg"
+                  alt="Game 2 - 2"
+                  onerror="this.closest('.proj-slide').classList.add('broken')"
+                />
+              </div>
+              <div class="proj-slide">
+                <img
+                  src="images/game2-3.jpg"
+                  alt="Game 2 - 3"
+                  onerror="this.closest('.proj-slide').classList.add('broken')"
+                />
+              </div>
+            </div>
+            <button class="slide-btn slide-prev" aria-label="Previous">
+              &#8249;
+            </button>
+            <button class="slide-btn slide-next" aria-label="Next">
+              &#8250;
+            </button>
+            <div class="slide-dots">
+              <button class="slide-dot active" aria-label="Slide 1"></button>
+              <button class="slide-dot" aria-label="Slide 2"></button>
+              <button class="slide-dot" aria-label="Slide 3"></button>
+            </div>
           </div>
           <div class="proj-body">
             <h3 class="proj-title">Game Project #2</h3>
@@ -1631,6 +1833,99 @@
       );
       document.querySelectorAll(".mn-link").forEach((a) => {
         a.addEventListener("click", () => mobileNav.classList.remove("open"));
+      });
+
+      // --- Project image sliders ---
+      document.querySelectorAll(".proj-img").forEach((container) => {
+        const imgs = container.querySelectorAll(".proj-slide img");
+        if (!imgs.length) return;
+
+        let settled = 0;
+        const total = imgs.length;
+
+        function initSlider() {
+          const slides = Array.from(
+            container.querySelectorAll(".proj-slide"),
+          ).filter((s) => !s.classList.contains("broken"));
+          const dotBtns = Array.from(
+            container.querySelectorAll(".slide-dot"),
+          ).slice(0, slides.length);
+          const prevBtn = container.querySelector(".slide-prev");
+          const nextBtn = container.querySelector(".slide-next");
+
+          if (!slides.length) {
+            container
+              .querySelectorAll(".proj-slider, .slide-btn, .slide-dots")
+              .forEach((el) => (el.style.display = "none"));
+            return;
+          }
+
+          if (slides.length < 2) {
+            container
+              .querySelectorAll(".slide-btn, .slide-dots")
+              .forEach((el) => (el.style.display = "none"));
+            slides[0].classList.add("active");
+            return;
+          }
+
+          slides.forEach((s) => s.classList.remove("active"));
+          slides[0].classList.add("active");
+          dotBtns.forEach((d) => d.classList.remove("active"));
+          dotBtns[0]?.classList.add("active");
+
+          let current = 0;
+          let autoTimer;
+
+          function goTo(n) {
+            slides[current].classList.remove("active");
+            dotBtns[current]?.classList.remove("active");
+            current = (n + slides.length) % slides.length;
+            slides[current].classList.add("active");
+            dotBtns[current]?.classList.add("active");
+          }
+
+          function startAuto() {
+            autoTimer = setInterval(() => goTo(current + 1), 3500);
+          }
+
+          function resetAuto() {
+            clearInterval(autoTimer);
+            startAuto();
+          }
+
+          prevBtn?.addEventListener("click", (e) => {
+            e.stopPropagation();
+            goTo(current - 1);
+            resetAuto();
+          });
+          nextBtn?.addEventListener("click", (e) => {
+            e.stopPropagation();
+            goTo(current + 1);
+            resetAuto();
+          });
+          dotBtns.forEach((dot, i) =>
+            dot.addEventListener("click", () => {
+              goTo(i);
+              resetAuto();
+            }),
+          );
+
+          startAuto();
+        }
+
+        function onSettle() {
+          settled++;
+          if (settled === total) initSlider();
+        }
+
+        imgs.forEach((img) => {
+          if (img.complete) {
+            onSettle();
+          } else {
+            img.addEventListener("load", onSettle);
+            img.addEventListener("error", onSettle);
+          }
+        });
       });
     </script>
   </body>
