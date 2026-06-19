@@ -1091,6 +1091,24 @@
         .certs-grid {
           grid-template-columns: 1fr;
         }
+
+        .resume-box {
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 1.5rem;
+        }
+        .resume-preview {
+          flex-direction: column;
+          width: 100%;
+        }
+        .resume-actions {
+          width: 100%;
+          flex-direction: column;
+        }
+        .resume-actions .btn {
+          width: 100%;
+          justify-content: center;
+        }
       }
 
       @media (max-width: 480px) {
@@ -1109,6 +1127,27 @@
         }
         .skills-grid {
           grid-template-columns: 1fr;
+        }
+
+        .resume-box {
+          padding: 1.25rem;
+          gap: 1rem;
+        }
+        .resume-preview svg {
+          width: 36px !important;
+          height: 36px !important;
+        }
+        .resume-name {
+          font-size: 0.8rem;
+          word-break: break-word;
+        }
+        .resume-meta {
+          font-size: 0.72rem;
+          word-break: break-word;
+        }
+        .resume-actions .btn {
+          font-size: 0.8rem;
+          padding: 0.65rem 1.2rem;
         }
       }
     </style>
