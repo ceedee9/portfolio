@@ -5,8 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Carlo De los Reyes — BS Information Technology student portfolio showcasing projects, skills, and certifications."
+      content="Carlo De los Reyes — aspiring full-stack developer building responsive interfaces, backend services, APIs, and database-driven applications."
     />
+    <meta
+      name="keywords"
+      content="Carlo De los Reyes, full-stack developer, web developer, React, Express, PHP, FastAPI, PostgreSQL, portfolio"
+    />
+    <meta name="author" content="Carlo De los Reyes" />
+    <meta name="theme-color" content="#07070e" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Carlo De los Reyes — Full-Stack Developer Portfolio" />
+    <meta
+      property="og:description"
+      content="Explore Carlo De los Reyes' full-stack projects, technical skills, and software development work."
+    />
+    <meta property="og:image" content="images/IdPic.jpg" />
     <title>Carlo De los Reyes — Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,6 +27,7 @@
       href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Figtree:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <link rel="preload" as="image" href="images/logo1.png" />
 
     <style>
       /* ===== CSS VARIABLES ===== */
@@ -46,6 +60,10 @@
       html {
         scroll-behavior: smooth;
       }
+      :focus-visible {
+        outline: 2px solid var(--blue-bright);
+        outline-offset: 4px;
+      }
 
       body {
         background: var(--bg);
@@ -54,6 +72,22 @@
         font-weight: 400;
         line-height: 1.7;
         overflow-x: hidden;
+      }
+
+      .skip-link {
+        background: var(--blue);
+        border-radius: 0 0 var(--r-sm) 0;
+        color: #fff;
+        left: 0;
+        padding: 0.65rem 1rem;
+        position: fixed;
+        top: 0;
+        transform: translateY(-120%);
+        transition: transform 0.2s;
+        z-index: 2000;
+      }
+      .skip-link:focus {
+        transform: translateY(0);
       }
 
       /* Custom scrollbar */
@@ -243,6 +277,10 @@
         margin-bottom: 2.5rem;
       }
 
+      .section-sub:last-child {
+        margin-bottom: 0;
+      }
+
       /* ===== HERO ===== */
       #hero {
         min-height: 100vh;
@@ -303,6 +341,23 @@
         max-width: 500px;
         margin-bottom: 2.5rem;
         line-height: 1.75;
+      }
+
+      .hero-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem 0.8rem;
+        margin: -0.75rem 0 2.25rem;
+        color: var(--text-dim);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .hero-stack span:not(:last-child)::after {
+        content: "/";
+        color: var(--border-hi);
+        margin-left: 0.8rem;
       }
 
       .hero-cta {
@@ -514,6 +569,51 @@
         background: var(--blue-dim);
       }
 
+      /* ===== FULL-STACK SNAPSHOT ===== */
+      .stack-snapshot {
+        padding-top: 1.5rem;
+      }
+      .stack-snapshot .section-sub {
+        margin-bottom: 1.75rem;
+      }
+      .stack-snapshot-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+      }
+      .stack-snapshot-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--r);
+        padding: 1.25rem;
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+      }
+      .stack-snapshot-card:hover {
+        border-color: var(--blue);
+        transform: translateY(-2px);
+      }
+      .stack-snapshot-card h3 {
+        font-family: "Syne", sans-serif;
+        font-size: 0.95rem;
+        margin-bottom: 0.45rem;
+      }
+      .stack-snapshot-card p {
+        color: var(--text-muted);
+        font-size: 0.78rem;
+        line-height: 1.6;
+      }
+      .stack-snapshot-card code {
+        display: block;
+        color: var(--blue);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+        letter-spacing: 0.06em;
+        margin-bottom: 0.8rem;
+        text-transform: uppercase;
+      }
+
       /* ===== PROJECTS ===== */
       .projects-grid {
         display: grid;
@@ -537,6 +637,17 @@
         transform: translateY(-5px);
         border-color: var(--border-hi);
         box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
+      }
+      .project-card.featured {
+        order: -1;
+        grid-column: span 2;
+        border-color: rgba(91, 141, 238, 0.45);
+      }
+      .project-card.featured .proj-img {
+        height: 205px;
+      }
+      .project-card.featured .proj-title {
+        font-size: 1.3rem;
       }
 
       .proj-img {
@@ -582,12 +693,95 @@
         letter-spacing: -0.02em;
         margin-bottom: 0.45rem;
       }
+      .proj-role {
+        color: var(--blue);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+        letter-spacing: 0.08em;
+        margin-bottom: 0.7rem;
+        text-transform: uppercase;
+      }
       .proj-desc {
         color: var(--text-muted);
         font-size: 0.855rem;
         line-height: 1.65;
         flex: 1;
         margin-bottom: 1.25rem;
+      }
+      .proj-case-study {
+        border-top: 1px solid var(--border);
+        margin: 0 0 1rem;
+        padding-top: 0.85rem;
+      }
+      .proj-case-study summary {
+        color: var(--text-muted);
+        cursor: pointer;
+        font-size: 0.75rem;
+        font-weight: 600;
+        list-style: none;
+      }
+      .proj-case-study summary::-webkit-details-marker {
+        display: none;
+      }
+      .proj-case-study summary::after {
+        content: "+";
+        color: var(--blue);
+        float: right;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.9rem;
+      }
+      .proj-case-study[open] summary::after {
+        content: "−";
+      }
+      .case-study-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.8rem;
+        margin-top: 0.9rem;
+      }
+      .case-study-item strong {
+        color: var(--text);
+        display: block;
+        font-size: 0.7rem;
+        margin-bottom: 0.15rem;
+      }
+      .case-study-item span {
+        color: var(--text-muted);
+        font-size: 0.72rem;
+        line-height: 1.45;
+      }
+      .architecture {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--r-sm);
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        grid-column: 1 / -1;
+        margin-top: 0.2rem;
+        overflow-x: auto;
+        padding: 0.75rem;
+      }
+      .architecture-node {
+        background: var(--card);
+        border: 1px solid var(--border-hi);
+        border-radius: 4px;
+        color: var(--text-muted);
+        flex: 0 0 auto;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.62rem;
+        padding: 0.4rem 0.55rem;
+        white-space: nowrap;
+      }
+      .architecture-node.primary {
+        border-color: var(--blue);
+        color: var(--blue-bright);
+      }
+      .architecture-arrow {
+        color: var(--text-dim);
+        flex: 0 0 auto;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem;
       }
       .proj-tags {
         display: flex;
@@ -657,6 +851,9 @@
       .project-card:hover .slide-btn {
         opacity: 1;
       }
+      .slide-btn:focus-visible {
+        opacity: 1;
+      }
       .slide-btn:hover {
         background: rgba(91, 141, 238, 0.6);
       }
@@ -690,6 +887,11 @@
       .slide-dot.active {
         background: #fff;
         transform: scale(1.4);
+      }
+      @media (pointer: coarse) {
+        .slide-btn {
+          opacity: 1;
+        }
       }
 
       .proj-links {
@@ -725,6 +927,76 @@
       .proj-link.disabled {
         opacity: 0.35;
         pointer-events: none;
+      }
+
+      .project-filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem;
+        margin: -0.8rem 0 1.75rem;
+      }
+      .filter-btn {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        color: var(--text-muted);
+        cursor: pointer;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        padding: 0.45rem 0.8rem;
+        transition: all 0.2s;
+      }
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: var(--blue-dim);
+        border-color: var(--blue);
+        color: var(--blue);
+      }
+      .project-card.is-hidden {
+        display: none;
+      }
+      .project-count {
+        color: var(--text-dim);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.68rem;
+        margin-left: auto;
+      }
+
+      /* ===== BUILD PROCESS ===== */
+      .build-process {
+        padding-top: 2rem;
+      }
+      .build-steps {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 0;
+        border: 1px solid var(--border);
+        border-radius: var(--r);
+        overflow: hidden;
+      }
+      .build-step {
+        background: var(--card);
+        border-right: 1px solid var(--border);
+        padding: 1.3rem;
+      }
+      .build-step:last-child {
+        border-right: 0;
+      }
+      .build-step code {
+        color: var(--blue);
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+      }
+      .build-step h3 {
+        font-family: "Syne", sans-serif;
+        font-size: 0.9rem;
+        line-height: 1.3;
+        margin: 0.75rem 0 0.4rem;
+      }
+      .build-step p {
+        color: var(--text-muted);
+        font-size: 0.75rem;
+        line-height: 1.55;
       }
 
       /* ===== CERTIFICATES ===== */
@@ -840,7 +1112,7 @@
       .cert-modal {
         position: fixed;
         inset: 0;
-        z-index: 1000;
+        z-index: 1001;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -872,7 +1144,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index: 1002;
+        z-index: 1003;
         transition: background 0.15s;
       }
       .cert-modal-close:hover {
@@ -976,6 +1248,20 @@
         flex-shrink: 0;
       }
 
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
       /* ===== FOOTER ===== */
       footer {
         border-top: 1px solid var(--border);
@@ -1056,11 +1342,6 @@
         transform: none;
         transition-delay: 0.52s;
       }
-      .stagger.visible > *:nth-child(9) {
-        opacity: 1;
-        transform: none;
-        transition-delay: 0.52s;
-      }
 
       /* ===== RESPONSIVE ===== */
       @media (max-width: 800px) {
@@ -1092,6 +1373,21 @@
         .projects-grid {
           grid-template-columns: 1fr;
         }
+        .project-card.featured {
+          grid-column: auto;
+        }
+        .project-card.featured .proj-img {
+          height: 175px;
+        }
+        .build-steps {
+          grid-template-columns: 1fr 1fr;
+        }
+        .build-step:nth-child(2n) {
+          border-right: 0;
+        }
+        .build-step:nth-child(-n + 3) {
+          border-bottom: 1px solid var(--border);
+        }
         .certs-grid {
           grid-template-columns: 1fr;
         }
@@ -1116,6 +1412,10 @@
       }
 
       @media (max-width: 480px) {
+        section {
+          padding-left: 1.25rem;
+          padding-right: 1.25rem;
+        }
         nav {
           padding: 1rem;
         }
@@ -1135,6 +1435,12 @@
           grid-template-columns: 1fr 1fr;
         }
         .skills-grid {
+          grid-template-columns: 1fr;
+        }
+        .stack-snapshot-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .case-study-grid {
           grid-template-columns: 1fr;
         }
 
@@ -1158,18 +1464,83 @@
           font-size: 0.8rem;
           padding: 0.65rem 1.2rem;
         }
+        .project-filters {
+          gap: 0.4rem;
+          margin-bottom: 1.4rem;
+        }
+        .filter-btn {
+          font-size: 0.62rem;
+          padding: 0.4rem 0.65rem;
+        }
+        .project-count {
+          flex-basis: 100%;
+          margin-left: 0;
+        }
+        .proj-links {
+          flex-wrap: wrap;
+        }
+        .proj-link {
+          flex: 1 1 auto;
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 360px) {
+        .stack-snapshot-grid {
+          grid-template-columns: 1fr;
+        }
+        .build-steps {
+          grid-template-columns: 1fr;
+        }
+        .build-step,
+        .build-step:nth-child(2n) {
+          border-bottom: 1px solid var(--border);
+          border-right: 0;
+        }
+        .build-step:last-child {
+          border-bottom: 0;
+        }
       }
     </style>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Carlo De los Reyes",
+        "jobTitle": "Aspiring Full-Stack Developer",
+        "description": "BS Information Technology student building responsive interfaces, backend services, APIs, and database-driven applications.",
+        "image": "images/IdPic.jpg",
+        "sameAs": [
+          "https://github.com/ceedee9",
+          "https://www.linkedin.com/in/carlo-de-los-reyes-b4b764400/"
+        ],
+        "knowsAbout": [
+          "Frontend development",
+          "Backend development",
+          "REST APIs",
+          "Database design",
+          "React",
+          "Express.js",
+          "PHP",
+          "FastAPI",
+          "PostgreSQL",
+          "MySQL"
+        ]
+      }
+    </script>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <!-- ===== NAVBAR ===== -->
     <nav id="navbar">
       <a href="#hero" class="nav-logo" aria-label="Home">
         <img src="images/logo1.png" alt="Carlo De los Reyes logo" />
       </a>
       <ul class="nav-links" id="navLinks">
+        <li><a href="#stack">Stack</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
+        <li><a href="#process">Process</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#certificates">Certificates</a></li>
         <li><a href="#resume">Resume</a></li>
@@ -1191,28 +1562,38 @@
       <button class="mobile-nav-close" id="mobileClose" aria-label="Close menu">
         ✕
       </button>
+      <a href="#stack" class="mn-link">Stack</a>
       <a href="#about" class="mn-link">About</a>
       <a href="#skills" class="mn-link">Skills</a>
+      <a href="#process" class="mn-link">Process</a>
       <a href="#projects" class="mn-link">Projects</a>
       <a href="#certificates" class="mn-link">Certificates</a>
       <a href="#resume" class="mn-link">Resume</a>
       <a href="#contact" class="mn-link">Contact</a>
     </div>
 
+    <main id="main-content">
     <!-- ===== HERO ===== -->
     <section id="hero">
       <div class="hero-content">
-        <div class="hero-badge">BS Information Technology · 3rd Year</div>
+        <div class="hero-badge">BS Information Technology · Fourth Year</div>
 
         <h1 class="hero-name">
           Carlo De los <span class="accent">Reyes.</span>
         </h1>
 
         <p class="hero-desc">
-          Aspiring IT leader with broad technical knowledge and the soft skills
-          to match; bridging people, process, and technology to deliver
-          solutions that actually work.
+          Aspiring full-stack developer building practical web and software
+          solutions. I connect responsive interfaces, backend services,
+          databases, and APIs to turn real problems into working products.
         </p>
+        <div class="hero-stack" aria-label="Full-stack development focus">
+          <span>Frontend</span>
+          <span>Backend</span>
+          <span>Databases</span>
+          <span>APIs</span>
+          <span>Deployment</span>
+        </div>
 
         <div class="hero-cta">
           <a href="#projects" class="btn btn-primary">
@@ -1247,9 +1628,41 @@
       </div>
     </section>
 
+    <!-- ===== FULL-STACK SNAPSHOT ===== -->
+    <section id="stack" class="stack-snapshot">
+      <div class="section-label">01. Full-Stack Focus</div>
+      <h2 class="section-title">From Interface to Infrastructure</h2>
+      <p class="section-sub">
+        I enjoy working across the stack, from shaping the user experience to
+        connecting the systems and data behind it.
+      </p>
+      <div class="stack-snapshot-grid stagger">
+        <div class="stack-snapshot-card">
+          <code>01 / Frontend</code>
+          <h3>Interfaces that feel clear</h3>
+          <p>Responsive web and mobile experiences built around real users.</p>
+        </div>
+        <div class="stack-snapshot-card">
+          <code>02 / Backend</code>
+          <h3>Services that do the work</h3>
+          <p>APIs, business logic, and integrations that power complete features.</p>
+        </div>
+        <div class="stack-snapshot-card">
+          <code>03 / Data</code>
+          <h3>Reliable information flows</h3>
+          <p>Structured databases and data processing designed for useful results.</p>
+        </div>
+        <div class="stack-snapshot-card">
+          <code>04 / Delivery</code>
+          <h3>Projects brought to life</h3>
+          <p>Version-controlled, tested, and deployable work from idea to release.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== ABOUT ===== -->
     <section id="about">
-      <div class="section-label">01. About</div>
+      <div class="section-label">02. About</div>
       <h2 class="section-title">Who I Am</h2>
       <div class="about-grid fade-up">
         <div>
@@ -1285,11 +1698,11 @@
           </p>
           <div class="about-stats">
             <div class="stat">
-              <span class="stat-num">5+</span>
+              <span class="stat-num">6</span>
               <span class="stat-lbl">Projects</span>
             </div>
             <div class="stat">
-              <span class="stat-num">3rd</span>
+              <span class="stat-num">4th</span>
               <span class="stat-lbl">Year</span>
             </div>
             <div class="stat">
@@ -1303,7 +1716,7 @@
 
     <!-- ===== SKILLS ===== -->
     <section id="skills">
-      <div class="section-label">02. Skills</div>
+      <div class="section-label">03. Skills</div>
       <h2 class="section-title">What I Work With</h2>
       <p class="section-sub">
         A toolkit built through coursework, projects, and self-study.
@@ -1349,16 +1762,70 @@
       </div>
     </section>
 
+    <!-- ===== BUILD PROCESS ===== -->
+    <section id="process" class="build-process">
+      <div class="section-label">04. How I Build</div>
+      <h2 class="section-title">From Problem to Product</h2>
+      <p class="section-sub">
+        A practical workflow for turning an idea into something people can use.
+      </p>
+      <div class="build-steps stagger">
+        <div class="build-step">
+          <code>01</code>
+          <h3>Understand</h3>
+          <p>Clarify the users, constraints, and problem worth solving.</p>
+        </div>
+        <div class="build-step">
+          <code>02</code>
+          <h3>Design</h3>
+          <p>Shape the flows, interface, data model, and technical approach.</p>
+        </div>
+        <div class="build-step">
+          <code>03</code>
+          <h3>Build</h3>
+          <p>Develop the frontend, backend, APIs, and database connections.</p>
+        </div>
+        <div class="build-step">
+          <code>04</code>
+          <h3>Validate</h3>
+          <p>Test the behavior, refine the experience, and fix what breaks.</p>
+        </div>
+        <div class="build-step">
+          <code>05</code>
+          <h3>Deliver</h3>
+          <p>Use Git and deployment tools to make the work ready to share.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== PROJECTS ===== -->
     <section id="projects">
-      <div class="section-label">03. Projects</div>
+      <div class="section-label">05. Projects</div>
       <h2 class="section-title">Things I've Built</h2>
       <p class="section-sub">
         A selection of projects developed throughout my college years.
       </p>
+      <div class="project-filters" role="group" aria-label="Filter projects">
+        <button class="filter-btn active" type="button" data-filter="all">
+          All
+        </button>
+        <button class="filter-btn" type="button" data-filter="full-stack">
+          Full-stack
+        </button>
+        <button class="filter-btn" type="button" data-filter="frontend">
+          Frontend
+        </button>
+        <button class="filter-btn" type="button" data-filter="backend">
+          Backend / Data
+        </button>
+        <button class="filter-btn" type="button" data-filter="mobile">
+          Mobile
+        </button>
+        <span class="project-count" aria-live="polite">6 projects</span>
+      </div>
       <div class="projects-grid stagger">
         <!-- Coffee Shop -->
-        <div class="project-card">
+        <div class="project-card" data-category="frontend">
           <div
             class="proj-img"
             style="
@@ -1414,6 +1881,7 @@
           </div>
           <div class="proj-body">
             <h3 class="proj-title">Coffee Shop Website</h3>
+            <div class="proj-role">Frontend website</div>
             <p class="proj-desc">
               A fully designed website for a coffee shop featuring a menu
               showcase, about section, and contact page — built with a warm,
@@ -1463,7 +1931,7 @@
         </div>
 
         <!-- ARTA Government Survey -->
-        <div class="project-card">
+        <div class="project-card" data-category="full-stack">
           <div
             class="proj-img"
             style="
@@ -1519,11 +1987,29 @@
           </div>
           <div class="proj-body">
             <h3 class="proj-title">ARTA Government Survey</h3>
+            <div class="proj-role">Full-stack web system</div>
             <p class="proj-desc">
               A digital survey system built for government service feedback,
               aligned with ARTA (Anti-Red Tape Authority) standards,
               streamlining citizen feedback collection.
             </p>
+            <details class="proj-case-study">
+              <summary>View case study</summary>
+              <div class="case-study-grid">
+                <div class="case-study-item">
+                  <strong>Problem</strong>
+                  <span>Make citizen feedback collection easier to manage.</span>
+                </div>
+                <div class="case-study-item">
+                  <strong>My role</strong>
+                  <span>Built the web interface and connected the PHP and MySQL flow.</span>
+                </div>
+                <div class="case-study-item">
+                  <strong>Result</strong>
+                  <span>A structured system for collecting and organizing service feedback.</span>
+                </div>
+              </div>
+            </details>
             <div class="proj-tags">
               <span class="proj-tag">HTML</span>
               <span class="proj-tag">CSS</span>
@@ -1559,7 +2045,7 @@
         </div>
 
         <!-- Capstone -->
-        <div class="project-card">
+        <div class="project-card featured" data-category="full-stack mobile">
           <div
             class="proj-img"
             style="
@@ -1608,12 +2094,39 @@
           </div>
           <div class="proj-body">
             <h3 class="proj-title">iDETECT</h3>
+            <div class="proj-role">Featured full-stack system</div>
             <p class="proj-desc">
               A mobile-based discount identity validation system for business
               establishments in Valenzuela City. Features a 5-portal
               architecture — OCR scanner client app, 3 admin dashboards, and a
               beneficiary mobile app.
             </p>
+            <details class="proj-case-study">
+              <summary>View case study</summary>
+              <div class="case-study-grid">
+                <div class="case-study-item">
+                  <strong>Problem</strong>
+                  <span>Validate discount identities across multiple portals.</span>
+                </div>
+                <div class="case-study-item">
+                  <strong>My role</strong>
+                  <span>Connected the interfaces, services, data, and OCR workflow.</span>
+                </div>
+                <div class="case-study-item">
+                  <strong>Architecture</strong>
+                  <span>Flutter and React clients with Express, PostgreSQL, and Firebase.</span>
+                </div>
+                <div class="architecture" aria-label="iDETECT architecture">
+                  <span class="architecture-node primary">Flutter / React</span>
+                  <span class="architecture-arrow" aria-hidden="true">→</span>
+                  <span class="architecture-node primary">Express API</span>
+                  <span class="architecture-arrow" aria-hidden="true">→</span>
+                  <span class="architecture-node">PostgreSQL</span>
+                  <span class="architecture-arrow" aria-hidden="true">+</span>
+                  <span class="architecture-node">OCR / Firebase</span>
+                </div>
+              </div>
+            </details>
             <div class="proj-tags">
               <span class="proj-tag">Flutter</span>
               <span class="proj-tag">React.js</span>
@@ -1661,7 +2174,7 @@
         </div>
 
         <!-- Restaurant Dish Demand Forecasting -->
-        <div class="project-card">
+        <div class="project-card" data-category="backend">
           <div
             class="proj-img"
             style="
@@ -1717,6 +2230,7 @@
           </div>
           <div class="proj-body">
             <h3 class="proj-title">Restaurant Dish Demand Forecasting</h3>
+            <div class="proj-role">Backend and data system</div>
             <p class="proj-desc">
               A machine learning system that predicts daily serving demand for
               16 Filipino dishes based on day of week, weather, and holiday
@@ -1749,7 +2263,7 @@
         </div>
 
         <!-- Game 1 -->
-        <div class="project-card">
+        <div class="project-card" data-category="other">
           <div
             class="proj-img"
             style="
@@ -1805,13 +2319,15 @@
           </div>
           <div class="proj-body">
             <h3 class="proj-title">Piso Politiko Companion App</h3>
+            <div class="proj-role">Unity application</div>
             <p class="proj-desc">
               Companion app for Piso Politiko, a Philippine politics-themed
               board game, built in Unity with a digital dice roller, resource
               tracker, automated tile/scoring logic, and PVP resource attacks.
             </p>
             <div class="proj-tags">
-              <span class="proj-tag">Python</span>
+              <span class="proj-tag">Unity</span>
+              <span class="proj-tag">C#</span>
               <span class="proj-tag">Game Dev</span>
             </div>
             <div class="proj-links">
@@ -1833,7 +2349,7 @@
         </div>
 
         <!-- Game 2 -->
-        <div class="project-card">
+        <div class="project-card" data-category="other">
           <div
             class="proj-img"
             style="
@@ -1888,7 +2404,8 @@
             </div>
           </div>
           <div class="proj-body">
-            <h3 class="proj-title">Game Project #2</h3>
+            <h3 class="proj-title">Java Game Project</h3>
+            <div class="proj-role">Java application</div>
             <p class="proj-desc">
               A second game project exploring different mechanics and design
               patterns, showcasing versatility in software development and
@@ -1915,7 +2432,7 @@
 
     <!-- ===== CERTIFICATES ===== -->
     <section id="certificates">
-      <div class="section-label">04. Certificates</div>
+      <div class="section-label">06. Certificates</div>
       <h2 class="section-title">Credentials</h2>
       <p class="section-sub">
         Online courses and certifications I've earned — and am still adding to.
@@ -2045,7 +2562,14 @@
     </section>
 
     <!-- ===== CERT LIGHTBOX ===== -->
-    <div class="cert-modal" id="certModal" aria-hidden="true">
+    <div
+      class="cert-modal"
+      id="certModal"
+      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Certificate preview"
+    >
       <div class="cert-modal-backdrop"></div>
       <button class="cert-modal-close" aria-label="Close">&times;</button>
       <img class="cert-modal-img" src="" alt="Certificate" />
@@ -2053,7 +2577,7 @@
 
     <!-- ===== RESUME ===== -->
     <section id="resume">
-      <div class="section-label">05. Resume</div>
+      <div class="section-label">07. Resume</div>
       <h2 class="section-title">My Resume</h2>
       <p class="section-sub">View or download my full resume below.</p>
       <div class="resume-box fade-up">
@@ -2174,11 +2698,12 @@
         </div>
       </div>
     </section>
+    </main>
 
     <!-- ===== FOOTER ===== -->
     <footer>
       <p>
-        © 2025 <b>Carlo De los Reyes</b> &nbsp;·&nbsp; BS Information Technology
+        © 2026 <b>Carlo De los Reyes</b> &nbsp;·&nbsp; BS Information Technology
         &nbsp;·&nbsp; Built with 💙
       </p>
     </footer>
@@ -2257,10 +2782,39 @@
         if (e.key === "Escape") closeMenu();
       });
 
+      // --- Project filters ---
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      const projectCards = document.querySelectorAll(".project-card");
+      const projectCount = document.querySelector(".project-count");
+
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const filter = button.dataset.filter;
+          let visibleCount = 0;
+
+          filterButtons.forEach((filterButton) => {
+            filterButton.classList.toggle("active", filterButton === button);
+          });
+
+          projectCards.forEach((card) => {
+            const categories = card.dataset.category.split(" ");
+            const isVisible = filter === "all" || categories.includes(filter);
+            card.classList.toggle("is-hidden", !isVisible);
+            if (isVisible) visibleCount++;
+          });
+
+          projectCount.textContent =
+            visibleCount + (visibleCount === 1 ? " project" : " projects");
+        });
+      });
+
       // --- Project image sliders ---
       document.querySelectorAll(".proj-img").forEach((container) => {
         const imgs = container.querySelectorAll(".proj-slide img");
         if (!imgs.length) return;
+        const projectName =
+          container.closest(".project-card")?.querySelector(".proj-title")
+            ?.textContent.trim() || "project";
 
         let settled = 0;
         const total = imgs.length;
@@ -2301,12 +2855,16 @@
           function goTo(n) {
             slides[current].classList.remove("active");
             dotBtns[current]?.classList.remove("active");
+            dotBtns[current]?.removeAttribute("aria-current");
             current = (n + slides.length) % slides.length;
             slides[current].classList.add("active");
             dotBtns[current]?.classList.add("active");
+            dotBtns[current]?.setAttribute("aria-current", "true");
           }
 
           function startAuto() {
+            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+              return;
             autoTimer = setInterval(() => goTo(current + 1), 3500);
           }
 
@@ -2332,7 +2890,16 @@
             }),
           );
 
-          startAuto();
+          prevBtn?.setAttribute("aria-label", `Previous ${projectName} image`);
+          nextBtn?.setAttribute("aria-label", `Next ${projectName} image`);
+          dotBtns.forEach((dot, i) => {
+            dot.setAttribute("aria-label", `${projectName} image ${i + 1}`);
+          });
+          dotBtns[0]?.setAttribute("aria-current", "true");
+
+          if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            startAuto();
+          }
         }
 
         function onSettle() {
@@ -2355,13 +2922,17 @@
       const certModalImg = certModal.querySelector(".cert-modal-img");
       const certModalClose = certModal.querySelector(".cert-modal-close");
       const certModalBackdrop = certModal.querySelector(".cert-modal-backdrop");
+      let lastFocusedElement;
 
       document.querySelectorAll(".cert-card[data-cert]").forEach((card) => {
         card.addEventListener("click", () => {
+          lastFocusedElement = document.activeElement;
           certModalImg.src = card.dataset.cert;
+          certModalImg.alt = card.querySelector(".cert-name").textContent.trim();
           certModal.classList.add("open");
           certModal.setAttribute("aria-hidden", "false");
           document.body.style.overflow = "hidden";
+          certModalClose.focus();
         });
       });
 
@@ -2369,6 +2940,7 @@
         certModal.classList.remove("open");
         certModal.setAttribute("aria-hidden", "true");
         document.body.style.overflow = "";
+        lastFocusedElement?.focus();
       }
 
       certModalClose.addEventListener("click", closeCertModal);
